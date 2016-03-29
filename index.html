@@ -5,6 +5,9 @@
     <meta charset="utf-8" />
     <script type="text/javascript">
         function arvuta() {
+            $(document).bind("contextmenu",function(e) {
+ e.preventDefault();
+});
             var proseHind = new Array(78.71, 110.24, 155, 156.02, 255, 359);
             var videoHind = new Array(255.90, 369, 523.63, 239.90, 385, 569.80);
             var kettaHind = new Array(52.80, 54.50);
@@ -28,9 +31,6 @@
             }
             document.getElementById("koguHind").innerHTML = Math.round(koguHind * 100) / 100;
           }
-          $(document).bind("contextmenu",function(e) {
- e.preventDefault();
-});
     </script>
 </head>
 <body>
