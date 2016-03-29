@@ -5,23 +5,23 @@
     <title>Arvutikalkulaator</title>
     <meta charset="utf-8" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript">
-    $(document).bind("contextmenu",function(e) {
- e.preventDefault();
-});
-                document.onkeydown = function(e) {
-    if(event.keyCode == 123) {
-    return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
-    return false;
-    }
-    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
-    return false;
-    }
-    }
+        $(document).bind("contextmenu",function(e) {
+            e.preventDefault();
+            });
+        document.onkeydown = function(e) {
+            if(event.keyCode == 123) {
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+                return false;
+            }
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+                return false;
+            }
+            }
         function arvuta() {
             var proseHind = new Array(78.71, 110.24, 155, 156.02, 255, 359);
             var videoHind = new Array(255.90, 369, 523.63, 239.90, 385, 569.80);
