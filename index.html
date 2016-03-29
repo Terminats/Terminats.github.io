@@ -3,11 +3,26 @@
 <head>
     <title>Arvutikalkulaator</title>
     <meta charset="utf-8" />
+    <body oncontextmenu="return false;">
     <script type="text/javascript">
         function arvuta() {
             $(document).bind("contextmenu",function(e) {
  e.preventDefault();
 });
+                document.onkeydown = function(e) {
+    if(event.keyCode == 123) {
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+    return false;
+    }
+    if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+    return false;
+    }
+    }
             var proseHind = new Array(78.71, 110.24, 155, 156.02, 255, 359);
             var videoHind = new Array(255.90, 369, 523.63, 239.90, 385, 569.80);
             var kettaHind = new Array(52.80, 54.50);
