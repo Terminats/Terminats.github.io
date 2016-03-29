@@ -1,132 +1,174 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <body oncontextmenu="return false;">
-    <title>Arvutikalkulaator</title>
-    <meta charset="utf-8" />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-			var jQuery_latest = $.noConflict(true);
-			$(document).bind("contextmenu",function(e) {
-				e.preventDefault();
-			});
-			document.onkeydown = function(e) {
-			if(event.keyCode == 123) {
-				return false;
+	<body>
+		<title>Arvutikalkulaator</title>
+		<meta charset="utf-8"/>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<style type="text/css">
+		* {
+			border-radius: 0 !important;
+		}
+		</style>
+		<script type="text/javascript">
+		function arvuta() {
+			var proseHind = new Array(78.71, 110.24, 155, 156.02, 255, 359);
+			var videoHind = new Array(255.90, 369, 523.63, 239.90, 385, 569.80);
+			var kettaHind = new Array(52.80, 54.50);
+			var ssdHind = new Array(0, 75.50, 92.90, 169);
+			var toiteHind = new Array(98.83, 108.82, 145.96, 190.93, 339.43, 445.91);
+			var koguHind = 0;
+			koguHind += proseHind[document.protsessorForm.protsessor.selectedIndex];
+			koguHind += videoHind[document.protsessorForm.videokaart.selectedIndex];
+			koguHind += kettaHind[document.protsessorForm.kõvaketas.selectedIndex];
+			koguHind += ssdHind[document.protsessorForm.ssd.selectedIndex];
+			koguHind += toiteHind[document.protsessorForm.psu.selectedIndex];
+			if (document.getElementById("4gb").checked) {
+				koguHind += 18.25;
+			} else if (document.getElementById("8gb").checked) {
+				koguHind += 32.5;
+			} else if (document.getElementById("16gb").checked) {
+				koguHind += 66.25;
+			} else {
+				alert("Palun vali mälumaht!");
+				return;
 			}
-			if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
-				return false;
-			}
-			if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
-				return false;
-			}
-			if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
-				return false;
-			}
-	</script>
-    <script type="text/javascript">
-        function arvuta() {
-            var proseHind = new Array(78.71, 110.24, 155, 156.02, 255, 359);
-            var videoHind = new Array(255.90, 369, 523.63, 239.90, 385, 569.80);
-            var kettaHind = new Array(52.80, 54.50);
-            var ssdHind = new Array(0, 75.50, 92.90, 169);
-            var toiteHind = new Array(98.83, 108.82, 145.96, 190.93, 339.43, 445.91);
-            var koguHind = 0;
-            koguHind += proseHind[document.protsessorForm.protsessor.selectedIndex];
-            koguHind += videoHind[document.protsessorForm.videokaart.selectedIndex];
-            koguHind += kettaHind[document.protsessorForm.kõvaketas.selectedIndex];
-            koguHind += ssdHind[document.protsessorForm.ssd.selectedIndex];
-            koguHind += toiteHind[document.protsessorForm.psu.selectedIndex];
-            if (document.getElementById("4gb").checked) {
-                koguHind += 18.25;
-            } else if (document.getElementById("8gb").checked) {
-                koguHind += 32.5;
-            } else if (document.getElementById("16gb").checked) {
-                koguHind += 66.25;
-            } else {
-                alert("Palun vali mälumaht!");
-                return;
-            }
-            document.getElementById("koguHind").innerHTML = Math.round(koguHind * 100) / 100;
-          }
-    </script>
+			document.getElementById("koguHind").innerHTML = Math.round(koguHind * 100) / 100;
+		}
+		</script>
 </head>
 <body>
-    <h1>Arvutikalkulaator</h1>
-    <span style="font: bold 18px arial;">Hinnad uuendatud: 29.03.2016 arvutitark.ee järgi</span>
-    <form action="/" method="post" name="protsessorForm">
-        <dl>
-            <dt>Vali protsessor:</dt>
-            <dd>
-                <select name="protsessor">
-                    <option>FX-4300</option>
-                    <option>FX-6300</option>
-                    <option>FX-8320</option>
-                    <option>i3 4360</option>
-                    <option>i5 4690k</option>
-                    <option>i7 4790k</option>
-                </select>
-            </dd>
-            <p>
-            <dt>Vali videokaart:</dt>
-            <dd>
-                <select name="videokaart">
-                    <option>R9 380</option>
-                    <option>R9 390</option>
-                    <option>R9 390x</option>
-                    <option>GTX 960</option>
-                    <option>GTX 970</option>
-                    <option>GTX 980</option>
-                </select>
-            </dd> <p>
-<dt>Mälu hulk:</dt>
-            <dd>
-                <input type="radio" name="ram" id="4gb"/><label for="4gb">4GB</label><br />
-                <input type="radio" name="ram" id="8gb"/><label for="8gb">8GB</label><br />
-                <input type="radio" name="ram" id="16gb"/><label for="16gb">16GB</label>
-            </dd> <p>
-<dt>Kõvaketta valik:</dt>
-            <dd>
-                <select name="kõvaketas">
-                    <option>Western D 500GB</option>
-                    <option>Western D 1TB</option>
-                </select>
-            </dd> <p>
-<dt>SSD valik:</dt>
-            <dd>
-                <select name="ssd">
-                    <option>Ei soovi.</option>
-                    <option>Samsung 850 EVO 120GB</option>
-                    <option>Samsung 850 EVO 250GB</option>
-                    <option>Samsung 850 EVO 500GB</option>
-                </select>
-            </dd> <p>
-<dt>Vali toiteplokk:</dt>
-<dd>
-    <select name="psu">
-        <option>Corsair RMx 550w</option>
-        <option>Corsair RMx 650w</option>
-        <option>Corsair RMx 850w</option>
-        <option>Corsair RMx 1000w</option>
-        <option>Corsair AXi 1200w</option>
-        <option>Corsair AXi 1500w</option>
-    </select>
-</dd>
-<p>
-<dt>Hind kokku: <span id="koguHind" style="font: bold 20px arial;">arvutamata</span></dt>
-            <dd>
-                <input type="button" style="font: 15px arial;" name="Arvuta" value="Arvuta" onclick="arvuta();" />
-            </dd> <p> 
-<dt>Makseviis:</dt>
-            <dd>
-                <input type="radio" name="makse" value=" " id="sula"/>
-                <label for="sula">sularahas</label>
-                <input type="radio" name="makse" value=" " id="kaart"/>
-                <label for="kaart">pangakaardiga</label>
-            </dd>
-            <dd>
-                <input type="button" style="font: 15px arial;" name="maksma" value="Maksma" onclick="window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4NQRUUGAZ3JNE');"/>
-            </dd>
-        </dl>
-    </form>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-header">
+					<h1>Arvutikalkulaator</h1>
+				</div>
+				<div class="alert alert-info">
+					<i class="fa fa-info-circle"></i> Hinnad uuendatud: 29.03.2016 arvutitark.ee järgi
+				</div>
+				<div class="col-md-6">
+					<form class="form-horizontal" action="/" method="post" name="protsessorForm">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="select1">Vali protsessor:</label>
+								<div class="col-md-5">
+									<select id="select1" name="protsessor" class="form-control">
+										<option>FX-4300</option>
+										<option>FX-6300</option>
+										<option>FX-8320</option>
+										<option>i3 4360</option>
+										<option>i5 4690k</option>
+										<option>i7 4790k</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="select2">Vali videokaart:</label>
+								<div class="col-md-5">
+									<select id="select2" name="videokaart" class="form-control">
+										<option>R9 380</option>
+										<option>R9 390</option>
+										<option>R9 390x</option>
+										<option>GTX 960</option>
+										<option>GTX 970</option>
+										<option>GTX 980</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="radio1">Mäluhulk:</label>
+								<div class="col-md-4">
+									<div class="radio">
+										<label for="4gb">
+											<input type="radio" name="ram" id="4gb" value="" checked="checked"> 4GB
+										</label>
+									</div>
+									<div class="radio">
+										<label for="8gb">
+											<input type="radio" name="ram" id="8gb" value=""> 8GB
+										</label>
+									</div>
+									<div class="radio">
+										<label for="16gb">
+											<input type="radio" name="ram" id="16gb" value=""> 16GB
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="select3">Vali kõvaketas:</label>
+								<div class="col-md-5">
+									<select id="select3" name="kõvaketas" class="form-control">
+										<option>Western D 500GB</option>
+										<option>Western D 1TB</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="select4">SSD valik:</label>
+								<div class="col-md-5">
+									<select id="select4" name="ssd" class="form-control">
+										<option>Ei soovi.</option>
+										<option>Samsung 850 EVO 120GB</option>
+										<option>Samsung 850 EVO 250GB</option>
+										<option>Samsung 850 EVO 500GB</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="select5">Vali toiteplokk:</label>
+								<div class="col-md-5">
+									<select id="select5" name="psu" class="form-control">
+										<option value="">Corsair RMx 550w</option>
+										<option value="">Corsair RMx 650w</option>
+										<option value="">Corsair RMx 850w</option>
+										<option value="">Corsair RMx 1000w</option>
+										<option value="">Corsair AXi 1200w</option>
+										<option value="">Corsair AXi 1500w</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="button1"></label>
+								<div class="col-md-4">
+									<input id="button1" type="button" name="Arvuta" value="Arvuta" onclick="arvuta();" class="btn btn-info" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="radios2">Makseviis:</label>
+								<div class="col-md-4">
+									<div class="radio">
+										<label for="sula">
+											<input type="radio" name="makse" id="sula" value="" checked="checked"> Sularaha
+										</label>
+									</div>
+									<div class="radio">
+										<label for="kaart">
+											<input type="radio" name="makse" id="kaart" value=""> Kaardiga
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="button2"></label>
+								<div class="col-md-4">
+									<input type="button" class="btn btn-success" name="maksma" value="Maksma" onclick="window.open('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4NQRUUGAZ3JNE');" />
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class="col-md-6">
+					<div class="well well-lg">
+						<h2 style="font-weight: 300;">Kogu hind: <span id="koguHind">0</span>€</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
